@@ -1,12 +1,13 @@
+import Header from './components/Header';
+import List from './components/List';
+
 function App() {
   return (
     <>
-      <header className='underline'>To Do List</header>
+      <Header />
       <section>
-        <p>item</p>
-        <p>item</p>
+        <List />
       </section>
-      <h1 className='underline'>test</h1>
     </>
   );
 }
