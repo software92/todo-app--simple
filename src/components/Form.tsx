@@ -1,15 +1,17 @@
 import { useState } from 'react'
+import { IHandleTodoReset, IHandleUpdateTodos } from '../types'
 
 interface Props {
-  updateTodos: (text: string) => void
+  handleUpdateTodos: IHandleUpdateTodos
+  handleTodoReset: IHandleTodoReset
 }
 
-const Form = ({ updateTodos }: Props) => {
+const Form = ({ handleUpdateTodos, handleTodoReset }: Props) => {
   const [text, setText] = useState('')
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter') {
-      updateTodos(text)
+      handleUpdateTodos(text)
       setText('')
     }
   }
@@ -17,7 +19,7 @@ const Form = ({ updateTodos }: Props) => {
     setText(e.target.value)
   }
   const handleClick = () => {
-    updateTodos(text)
+    handleUpdateTodos(text)
     setText('')
   }
 
@@ -30,6 +32,7 @@ const Form = ({ updateTodos }: Props) => {
         onKeyDown={handleKeyDown}
       />
       <button onClick={handleClick}>추가</button>
+      <button onClick={handleTodoReset}>Reset</button>
     </div>
   )
 }

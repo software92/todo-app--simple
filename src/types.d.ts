@@ -3,4 +3,6 @@ export interface ToDo {
   id: string
 }
 
+export type IHandleUpdateTodos = (text: string) => void
 export type IHandleTodoRemove = (id: string) => void
+export type IHandleTodoReset = () => void

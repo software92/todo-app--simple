@@ -14,7 +14,7 @@ function App() {
   }
 
   // form
-  const updateTodos = (text: string) => {
+  const handleUpdateTodos = (text: string) => {
     if (text === '') return alert('To Do를 입력해주세요')
 
     const newTodos = [...todos, { todo: text, id: new Date().toISOString() }]
@@ -31,6 +31,11 @@ function App() {
     setTodos(newTodos)
   }
 
+  const handleTodoReset = () => {
+    setTodos([])
+    saveTodos([])
+  }
+
   useEffect(() => {
     const getLocalTodos = localStorage.getItem(LS_TODOLIST)
     const initTodos = getLocalTodos ? JSON.parse(getLocalTodos) : []
@@ -42,7 +47,10 @@ function App() {
     // container
     <div>
       <Header />
-      <Form updateTodos={updateTodos} />
+      <Form
+        handleUpdateTodos={handleUpdateTodos}
+        handleTodoReset={handleTodoReset}
+      />
       <section>
         <List
           todos={todos}
