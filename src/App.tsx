@@ -11,6 +11,7 @@ function App() {
 
   const saveTodos = (todos: ToDo[]) => {
     localStorage.setItem(LS_TODOLIST, JSON.stringify(todos))
+    setTodos(todos)
   }
 
   // form
@@ -19,7 +20,6 @@ function App() {
 
     const newTodos = [...todos, { todo: text, id: new Date().toISOString() }]
 
-    setTodos(newTodos)
     saveTodos(newTodos)
   }
   //
@@ -28,13 +28,9 @@ function App() {
     const newTodos = todos.filter(todo => todo.id !== selectedId)
 
     saveTodos(newTodos)
-    setTodos(newTodos)
   }
 
-  const handleTodoReset = () => {
-    setTodos([])
-    saveTodos([])
-  }
+  const handleTodoReset = () => saveTodos([])
 
   useEffect(() => {
     const getLocalTodos = localStorage.getItem(LS_TODOLIST)
