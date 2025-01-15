@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react'
 import Form from './components/Form'
 import Header from './components/Header'
-// import List from './components/List';
-// import Item from './components/Item';
-
-interface ToDo {
-  todo: string
-  id: string
-}
+import List from './components/List'
+import { ToDo } from './types'
 
 const LS_TODOLIST = 'todolist'
 
@@ -29,8 +24,8 @@ function App() {
   }
   //
 
-  const handleRemove = (item: ToDo) => {
-    const newTodos = todos.filter(todo => todo.id !== item.id)
+  const handleTodoRemove = (selectedId: string) => {
+    const newTodos = todos.filter(todo => todo.id !== selectedId)
 
     saveTodos(newTodos)
     setTodos(newTodos)
@@ -49,17 +44,10 @@ function App() {
       <Header />
       <Form updateTodos={updateTodos} />
       <section>
-        {/* <List todos={todos} /> */}
-        <ul>
-          {todos.map(todo => (
-            <li key={todo.id}>
-              <span className='underline decoration-double'>
-                To do: {todo.todo}
-              </span>
-              <button onClick={() => handleRemove(todo)}>제거</button>
-            </li>
-          ))}
-        </ul>
+        <List
+          todos={todos}
+          handleTodoRemove={handleTodoRemove}
+        />
       </section>
     </div>
   )

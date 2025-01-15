@@ -1,13 +1,23 @@
-import Item from './Item';
+import { IHandleTodoRemove, ToDo } from '../types'
+import Item from './Item'
 
-const List = () => {
+interface Props {
+  todos: ToDo[]
+  handleTodoRemove: IHandleTodoRemove
+}
+
+const List = ({ todos, handleTodoRemove }: Props) => {
   return (
     <ul>
-      <Item />
-      <Item />
-      <Item />
+      {todos.map(todo => (
+        <Item
+          key={todo.id}
+          todo={todo}
+          handleTodoRemove={handleTodoRemove}
+        />
+      ))}
     </ul>
-  );
-};
+  )
+}
 
-export default List;
+export default List

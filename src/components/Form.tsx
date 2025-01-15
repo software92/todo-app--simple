@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
-type UpdateTodos = (text: string) => void
-// interface Props {
-//     updateTodos: (text: string) => void
-// }
+interface Props {
+  updateTodos: (text: string) => void
+}
 
-const Form = ({ updateTodos }: { updateTodos: UpdateTodos }) => {
+const Form = ({ updateTodos }: Props) => {
   const [text, setText] = useState('')
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
