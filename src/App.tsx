@@ -41,7 +41,7 @@ function App() {
 
   return (
     // container
-    <div>
+    <div className='w-screen h-full py-10 flex flex-col gap-y-4 items-center'>
       <Header />
       <Form
         handleUpdateTodos={handleUpdateTodos}
